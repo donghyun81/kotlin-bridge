@@ -13,4 +13,14 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         return listOf()
     }
+
+    fun makeBlock(number: Int): String {
+        if (number == UP_NUMBER) return "U"
+        return "D"
+    }
+
+    companion object {
+        const val UP_NUMBER = 0
+    }
+
 }
