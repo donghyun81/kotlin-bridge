@@ -11,7 +11,11 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     fun makeBridge(size: Int): List<String> {
-        return listOf()
+        val bridge = mutableListOf<String>()
+        repeat(size) {
+            bridge.add(makeBlock(bridgeNumberGenerator.generate()))
+        }
+        return bridge
     }
 
     fun makeBlock(number: Int): String {
@@ -20,7 +24,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     }
 
     companion object {
-        const val UP_NUMBER = 0
+        const val UP_NUMBER = 1
     }
 
 }
