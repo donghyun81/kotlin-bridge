@@ -25,4 +25,13 @@ class BridgeMakerTest {
     fun `지나갈 수 있는 블럭의 값을 호출하는 기능 테스트`(number:Int,bridgeBlock:String){
         assertEquals(bridgeMaker.makeBlock(number),bridgeBlock)
     }
+
+    @ParameterizedTest
+    @CsvSource(
+        "4,4",
+        "8,8"
+    )
+    fun `다리 만들기 기능의 길이 테스트`(number:Int,bridgeSize:Int){
+        assertEquals(bridgeMaker.makeBridge(number).size,bridgeSize)
+    }
 }
