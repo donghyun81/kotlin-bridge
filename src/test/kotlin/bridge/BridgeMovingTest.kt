@@ -16,10 +16,19 @@ class BridgeMovingTest {
 
     @ParameterizedTest
     @CsvSource(
-        "U,U, O ",
-        "U,D, X "
+        "U,U,O",
+        "U,D,X"
     )
     fun `다리 이동 결과 테스트`(block:String,moving:String,movingResult:String){
         assertEquals(bridgeMoving.blockResult(block,moving),movingResult)
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        "U,U,O,' '",
+        "U,D,' ',X"
+    )
+    fun `다리 이동 위치에 맞는 결과 반환 테스트`(block:String,moving:String,upResult:String,downResult:String){
+        assertEquals(bridgeMoving.blockLocation(block,moving),Pair(upResult,downResult))
     }
 }
