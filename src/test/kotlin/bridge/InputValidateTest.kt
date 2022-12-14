@@ -22,4 +22,13 @@ class InputValidateTest {
             inputValidate.bridgeSizeForm(input)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["A","d","u","Q"])
+    fun `이동 방향 입력 예외처리 기능 테스트`(input :String) {
+        assertThrows<IllegalArgumentException>(){
+            inputValidate.movingFrom(input)
+        }
+    }
+
 }
