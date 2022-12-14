@@ -24,10 +24,18 @@ class InputValidateTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["A","d","u","Q"])
+    @ValueSource(strings = ["A","d","u","1"])
     fun `이동 방향 입력 예외처리 기능 테스트`(input :String) {
         assertThrows<IllegalArgumentException>(){
             inputValidate.movingForm(input)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["A","q","u","r"])
+    fun `게임 재시작 또는 종료 입력 예외처리 기능 테스트`(input :String) {
+        assertThrows<IllegalArgumentException>(){
+            inputValidate.gameCommandForm(input)
         }
     }
 
