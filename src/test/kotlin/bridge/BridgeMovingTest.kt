@@ -20,6 +20,6 @@ class BridgeMovingTest {
         "U,D, X "
     )
     fun `다리 이동 결과 테스트`(block:String,moving:String,movingResult:String){
-        assertEquals(bridgeMoving.result(block,moving),movingResult)
+        assertEquals(bridgeMoving.blockResult(block,moving),movingResult)
     }
 }
