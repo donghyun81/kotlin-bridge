@@ -7,12 +7,17 @@ class InputValidate() {
     }
 
     fun movingForm(input: String) {
-        require(MOVING_FORM.toRegex().matches(input)) { println("[ERROR] U 또는 R만 입력해주세요.") }
+        require(MOVING_FORM.toRegex().matches(input)) { println("[ERROR] U 또는 D만 입력해주세요.") }
+    }
+
+    fun gameCommandForm(input: String) {
+        require(GAME_COMMAND_FORM.toRegex().matches(input)) { println("[ERROR] R 또는 Q만 입력해주세요.") }
     }
 
     companion object {
         const val BRIDGE_SIZE_FORM = "^[3-9]$|^1[0-9]$|^20\$"
-        const val MOVING_FORM = "^U$|R\$"
+        const val MOVING_FORM = "^U$|D\$"
+        const val GAME_COMMAND_FORM = "^R$|Q\$"
     }
 
 }
