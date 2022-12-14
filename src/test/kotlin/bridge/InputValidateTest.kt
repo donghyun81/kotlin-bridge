@@ -27,7 +27,7 @@ class InputValidateTest {
     @ValueSource(strings = ["A","d","u","Q"])
     fun `이동 방향 입력 예외처리 기능 테스트`(input :String) {
         assertThrows<IllegalArgumentException>(){
-            inputValidate.movingFrom(input)
+            inputValidate.movingForm(input)
         }
     }
 
