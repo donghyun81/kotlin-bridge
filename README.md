@@ -306,3 +306,21 @@ val number = bridgeNumberGenerator.generate()
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+## 실행 흐름에 따른 기능 목록 정리
+
+- 게임 시작 메세지 출력
+- 다리 길이 입력
+- 이동할 칸 선택
+- 이동 결과 출력
+    - 성공
+        - 이동 결과 출력
+    - 실패
+        - 이동 결과 출력
+        - 게임 재시도 입력
+            - 재시도
+                - 다리는 그대로인 상태로 다리 길이 입력으로 되돌아가고 시도 횟수 추가
+            - 종료
+                - 게임 종료 및 게임 결과 출력
+    - 모두 성공
+        - 게임 종료 및 게임 결과 출력
