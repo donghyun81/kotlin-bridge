@@ -21,7 +21,9 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        val moving = Console.readLine()
+        require(moving == "U" || moving == "D") { "[ERROR] 이동할 칸은 U 또는 D로 입력 해주세요!" }
+        return moving
     }
 
     /**
