@@ -13,6 +13,11 @@ class BridgeResult(
     fun getUpSquares() = _upSquares.toList()
     fun getDownSquares() = _downSquares.toList()
 
+    fun gameResult(): String {
+        if (isMovingFail()) return "실패"
+        return "성공"
+    }
+
     fun isMovingFail() = _upSquares.contains("X") || _downSquares.contains("X")
 
     fun clearBridgeResult() {

@@ -13,9 +13,10 @@ class BridgeGame {
         val bridgeSize = inputView.readBridgeSize()
         val bridgeResult = BridgeResult()
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
-        val retryCount = retry(bridgeResult) {
+        val tryCount = retry(bridgeResult) {
             move(bridge, bridgeResult)
         }
+        outputView.printResult(bridgeResult, tryCount)
     }
 
     /**
@@ -56,11 +57,11 @@ class BridgeGame {
      */
     fun retry(bridgeResult: BridgeResult, move: () -> Unit): Int {
         var isGameStop = false
-        var tryCount = 1
+        var tryCount = 0
         while (isGameStop.not()) {
+            tryCount++
             move()
             isGameStop = isRetryStop(bridgeResult)
-            tryCount++
         }
         return tryCount
     }
