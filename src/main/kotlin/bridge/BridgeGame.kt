@@ -11,7 +11,9 @@ class BridgeGame {
     fun run() {
         outputView.printStart()
         val bridgeSize = inputView.readBridgeSize()
+        val bridgeResult = BridgeResult()
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
+        move(bridge, bridgeResult)
     }
 
     /**
@@ -20,32 +22,28 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridge: List<String>): Boolean {
-        val upSquares = mutableListOf<String>()
-        val downSquares = mutableListOf<String>()
-        var movingResult: MovingResult
+    fun move(bridge: List<String>, bridgeResult: BridgeResult) {
         bridge.forEach { square ->
             val userMovingInput = inputView.readMoving()
-            movingResult = MovingResult(userMovingInput, square == userMovingInput)
-            addUpSquareStringBuilder(upSquares, downSquares, movingResult)
-            outputView.printMap(upSquares, downSquares)
-            if (movingResult.isMovingSuccess.not()) return movingResult.isMovingSuccess
+            addUpSquareStringBuilder(bridgeResult, userMovingInput, square)
+            outputView.printMap(bridgeResult)
+            if (bridgeResult.isMovingFail()) return
         }
-        return true
     }
 
-    private fun addUpSquareStringBuilder(
-        upSquares: MutableList<String>,
-        downSquares: MutableList<String>,
-        movingResult: MovingResult
-    ) {
-        if (movingResult.moveDirection == "U") {
-            upSquares.add(movingResult.getMovingText())
-            downSquares.add("   ")
+    private fun addUpSquareStringBuilder(bridgeResult: BridgeResult, movingInput: String, square: String) {
+        if (movingInput == "U") {
+            bridgeResult.addUpSquares(getMovingResult(movingInput, square))
+            bridgeResult.addDownSquares("   ")
             return
         }
-        upSquares.add("   ")
-        downSquares.add(movingResult.getMovingText())
+        bridgeResult.addUpSquares("   ")
+        bridgeResult.addDownSquares(getMovingResult(movingInput, square))
+    }
+
+    fun getMovingResult(movingInput: String, square: String): String {
+        if (movingInput == square) return " O "
+        return " X "
     }
 
     /**
