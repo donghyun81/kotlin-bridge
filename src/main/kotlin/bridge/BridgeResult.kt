@@ -14,4 +14,9 @@ class BridgeResult(
     fun getDownSquares() = _downSquares.toList()
 
     fun isMovingFail() = _upSquares.contains("X") || _downSquares.contains("X")
+
+    fun clearBridgeResult() {
+        _upSquares.clear()
+        _downSquares.clear()
+    }
 }
