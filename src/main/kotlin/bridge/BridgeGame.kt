@@ -10,7 +10,7 @@ class BridgeGame {
 
     fun run() {
         outputView.printStart()
-        val bridgeSize = inputView.readBridgeSize()
+        val bridgeSize = retryInput { inputView.readBridgeSize() }
         val bridgeResult = BridgeResult()
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
         val tryCount = retry(bridgeResult) {
@@ -25,9 +25,9 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridge: List<String>, bridgeResult: BridgeResult) {
+    private fun move(bridge: List<String>, bridgeResult: BridgeResult) {
         bridge.forEach { square ->
-            val userMovingInput = inputView.readMoving()
+            val userMovingInput = retryInput { inputView.readMoving() }
             addUpSquareStringBuilder(bridgeResult, userMovingInput, square)
             outputView.printMap(bridgeResult)
             if (bridgeResult.isMovingFail()) return
@@ -68,7 +68,7 @@ class BridgeGame {
 
     private fun isRetryStop(bridgeResult: BridgeResult): Boolean {
         if (bridgeResult.isMovingFail()) {
-            val retryInput = inputView.readGameCommand()
+            val retryInput = retryInput { inputView.readGameCommand() }
             if (retryInput == "R") bridgeResult.clearBridgeResult()
             return retryInput == "Q"
         }
