@@ -18,7 +18,7 @@ class BridgeResult(
         return "성공"
     }
 
-    fun isMovingFail() = _upSquares.contains("X") || _downSquares.contains("X")
+    fun isMovingFail() = _upSquares.contains(" X ") || _downSquares.contains(" X ")
 
     fun clearBridgeResult() {
         _upSquares.clear()
